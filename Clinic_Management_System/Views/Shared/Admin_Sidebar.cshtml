@@ -1,0 +1,27 @@
+﻿<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+
+
+@using (Clinic_Management_System.Models.KIITEntities db = new Clinic_Management_System.Models.KIITEntities())
+{
+    int memid = Convert.ToInt32(Session["Memberid"]);
+    var data = db.Admins.SingleOrDefault(a => a.MemberId == memid);
+    if (data == null)
+    {
+        <div class="sidenav">
+            <a href="@Url.Action("DashBoard", "Admin")">Dashboard</a>
+            <a href="@Url.Action("EditProfile", "Admin")">Edit Profile</a>
+        </div>
+    }
+    else
+    {
+        <div class="sidenav">
+            <a href="@Url.Action("DashBoard", "Admin")">Dashboard</a>
+            <a href="@Url.Action("EditProfile", "Admin")">Edit Profile</a>
+            <a href="@Url.Action("Change_Password", "Admin")">Change Password</a>
+            <a href="@Url.Action("JS_Drugs", "Admin")">Add/Edit Drugs</a>
+            <a href="@Url.Action("Remove_Drugs", "Admin")">Remove Drugs</a>
+            <a href="@Url.Action("View_Order_Details", "Admin")">View Order Details</a>
+        </div>
+    }
+}

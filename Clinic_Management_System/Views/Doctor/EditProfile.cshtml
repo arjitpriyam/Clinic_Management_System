@@ -1,0 +1,61 @@
+﻿@model Clinic_Management_System.Models.DoctorViewModel
+<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+@{
+    Html.RenderPartial("Doctor_Sidebar");
+}
+
+<h1 align="center" style=" font-weight:bolder">Update Profile</h1>
+<hr />
+@using (Html.BeginForm("EditProfile", "Doctor", FormMethod.Post))
+{
+    <div class="main">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>First Name</label>
+                    @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control roundedinput" })
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Last Name</label>
+                    @Html.TextBoxFor(a => a.LastName, new { @class = "form-control roundedinput" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Total Experience</label>
+                    @Html.TextBoxFor(a => a.TotalExperience, new { @class = "form-control roundedinput" })
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Gender</label><br />
+                    Male: @Html.RadioButtonFor(a => a.Gender, "Male") <br />
+                    Female: @Html.RadioButtonFor(a => a.Gender, "Female")
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Specialization</label>
+                    @Html.DropDownListFor(a => a.SpecializedId, Model.lstSpec, "Select", new { @class = "form-control roundedddlinput", @id = "ddlSpec" })
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <button type="submit" value="Update" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+}

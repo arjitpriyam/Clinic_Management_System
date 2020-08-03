@@ -1,0 +1,102 @@
+﻿@model Clinic_Management_System.Models.DrugViewModel
+<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Order Details";
+}
+@{
+    Html.RenderPartial("Admin_Sidebar");
+}
+
+
+<h1 align="center" style=" font-weight:bolder">Order Details</h1>
+<hr />
+<div class="main">
+    <table id="tblDet" class="table table-bordered table-hover">
+        <tr>
+            <th>Order Number</th>
+            <th>Drug Name</th>
+            <th>Quantity</th>
+            <th>Ordered Date</th>
+            <th>Assign Order</th>
+        </tr>
+
+        @if (Model.lstShowDrugs.Count == 0)
+        {
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model.lstShowDrugs)
+            {
+            <tr>
+                <td style="display:none;" class="OId">
+                    <span>@item.OrderId</span>
+                </td>
+                <td style="display:none;" class="DId">
+                    <span>@item.DrugId</span>
+                </td>
+                <td>@item.OrderNumber</td>
+                <td>@item.DrugName</td>
+                <td class="Oquan">
+                    <span>@item.Quantity</span>
+                </td>
+                <td>@item.OrderDate.ToString("dd-MMM-yyyy")</td>
+                @if (@item.SupplierName == null)
+                {
+                    <td>
+                        @Html.DropDownListFor(a => a.SupplierId, Model.lstSupplier, "Select", new { @class = "form-control", @id = "ddlSup" })
+                    </td>
+                    <td>
+                        <a class="Update" href="javascript:;">Update</a>
+                    </td>
+                }
+                else
+                {
+                    <td colspan="2">
+                        @item.SupplierName
+                    </td>
+                }
+            </tr>
+            }
+        }
+    </table>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+
+        $("body").on("click", "#tblDet .Update", function ()
+        {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                var span = $(this).find("span");
+            });
+            var dataValue =
+            {
+                OrderId: row.find(".OId").find("span").html(),
+                SupplierId: row.find("#ddlSup").val(),
+                Quantity: row.find(".Oquan").find("span").html(),
+                DrugId: row.find(".DId").find("span").html()
+            };
+
+            $.ajax
+            ({
+                url: '@Url.Action("InsertSupplier","Admin")',
+                type: "POST",
+                data: dataValue,
+                dataType: 'json',
+                success: function (e)
+                {
+                    window.location.href='@Url.Action("View_Order_Details", "Admin")';
+                },
+                error: function (e)
+                {
+                    alert("The Quantity is greater than available quantity");
+                }
+            });
+        });
+    </script>
+</div>
+

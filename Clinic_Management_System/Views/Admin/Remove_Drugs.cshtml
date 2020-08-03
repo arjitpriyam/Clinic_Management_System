@@ -1,0 +1,116 @@
+﻿@model Clinic_Management_System.Models.DrugModel
+<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Remove Drugs";
+}
+
+@{
+    Html.RenderPartial("Admin_Sidebar");
+}
+
+<h1 align="center" style=" font-weight:bolder">List of Drugs</h1>
+<hr />
+<div class="main">
+    <table id="tblDrugs" class="table table-bordered table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Drug Name</th>
+            <th>Manufacturing Date</th>
+            <th>Expiry Date</th>
+            <th>Used For</th>
+            <th>Side Effects</th>
+            <th>Quantity</th>
+            <th width="200" colspan="2"> Edit </th>
+        </tr>
+        @if (Model.lstDrugs.Count == 0)
+        {
+            <tr>
+                <td align="center">No Drugs Found</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model.lstDrugs)
+            {
+                <tr>
+                    <td class="DId">
+                        <span>@item.DrugId</span>
+                    </td>
+                    <td class="DName">
+                        <span>@item.DrugName</span>
+                        <input class="form-control" type="text" value="@item.DrugName" style="display:none" />
+                    </td>
+                    <td class="DMDate">
+                        <span>@item.Man_Date.ToString("dd-MMM-yyyy")</span>
+                        <input class="form-control" type="text" value="@item.Man_Date.ToString("dd-MMM-yyyy")" style="display:none" />
+
+                    </td>
+                    <td class="DEDate">
+                        <span>@item.Exp_Date.ToString("dd-MMM-yyyy")</span>
+                        <input class="form-control" type="text" value="@item.Exp_Date.ToString("dd-MMM-yyyy")" style="display:none" />
+
+                    </td>
+                    <td class="DUse">
+                        <span>@item.UsedFor</span>
+                        <input class="form-control" type="text" value="@item.UsedFor" style="display:none" />
+
+                    </td>
+                    <td class="DSide">
+                        <span>@item.SideEffects</span>
+                        <input class="form-control" type="text" value="@item.SideEffects" style="display:none" />
+
+                    </td>
+                    <td class="DQuan">
+                        <span>@item.Quantity</span>
+                        <input class="form-control" type="text" value="@item.Quantity" style="display:none" />
+                    </td>
+                    <td>
+                        <a class="Delete" href="javascript:;">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+
+        $("body").on("click", "#tblDrugs .Delete", function ()
+        {
+            if (confirm("Do you want to delete this row?"))
+            {
+                var row = $(this).closest("tr");
+                var id = row.find("span").html();
+                var dataValue = {
+                    DrugId: id
+                };
+                $.ajax(
+                {
+                    url: '@Url.Action("DeleteDrug","Admin")',
+                    type: "POST",
+                    data: dataValue,
+                    dataType: 'json',
+                    success: function ()
+                    {
+                        if ($("#tblDrugs tr").length > 2)
+                        {
+                            row.remove();
+                        }
+                        else
+                        {
+                            row.find(".Delete").hide();
+                            row.find("span").html('&nbsp;');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+
+
+</div>
+
+

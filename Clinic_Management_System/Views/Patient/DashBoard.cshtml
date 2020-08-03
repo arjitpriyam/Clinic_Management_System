@@ -1,0 +1,77 @@
+﻿<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "DashBoard";
+}
+
+@{
+    Html.RenderPartial("Patient_Sidebar");
+}
+
+<h1 align="center" style="font-weight:bolder">DashBoard</h1>
+<hr />
+<div class="main">
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th align="center">Total Appointments</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.App</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th><b>Approved=</b>@Model.AprApp</th>
+                    </tr>
+                    <tr>
+                        <td><b>Rejected=</b>@Model.RejApp</td>
+                    </tr>
+                    <tr>
+                        <td><b>Requested=</b>@Model.ProcApp</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top:100px">
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th>Total Orders</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.TotOrd</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th>Orders Delivered</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.DelOrd</td>
+                    </tr>
+                    <tr>
+                        <th>Orders Remaining</th>
+                    </tr>
+
+                    <tr>
+                        <td>@Model.ReqOrd</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

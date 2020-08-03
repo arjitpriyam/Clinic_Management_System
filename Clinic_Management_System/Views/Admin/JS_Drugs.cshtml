@@ -1,0 +1,229 @@
+﻿@model Clinic_Management_System.Models.DrugModel
+<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Edit_Drugs";
+}
+
+@{
+    Html.RenderPartial("Admin_Sidebar");
+}
+
+<h1 align="center" style=" font-weight:bolder">Drugs</h1>
+<hr />
+<div class="main">
+    <table id="tblDrugs" class="table table-bordered table-hover">
+        <tr>
+            <th>Drug Name</th>
+            <th>Manufacturing Date</th>
+            <th>Expiry Date</th>
+            <th>Used For</th>
+            <th>Side Effects</th>
+            <th>Quantity</th>
+            <th width="200" colspan="2"> Edit </th>
+        </tr>
+
+        @if (Model.lstDrugs.Count == 0)
+        {
+            <tr>
+                <td colspan="8">No Data Found</td>
+            </tr>
+        }
+        else
+        {
+
+            foreach (var item in Model.lstDrugs)
+            {
+                <tr>
+                    <td style="display:none;" class="DId">
+                        <span>@item.DrugId</span>
+                    </td>
+                    <td class="DName">
+                        <span>@item.DrugName</span>
+                        <input class="form-control" type="text" value="@item.DrugName" style="display:none" />
+                    </td>
+                    <td class="DMDate">
+                        <span>@item.Man_Date.ToString("dd-MMM-yyyy")</span>
+                        <input class="form-control" type="text" value="@item.Man_Date.ToString("dd-MMM-yyyy")" style="display:none" />
+
+                    </td>
+                    <td class="DEDate">
+                        <span>@item.Exp_Date.ToString("dd-MMM-yyyy")</span>
+                        <input class="form-control" type="text" value="@item.Exp_Date.ToString("dd-MMM-yyyy")" style="display:none" />
+
+                    </td>
+                    <td class="DUse">
+                        <span>@item.UsedFor</span>
+                        <input class="form-control" type="text" value="@item.UsedFor" style="display:none" />
+
+                    </td>
+                    <td class="DSide">
+                        <span>@item.SideEffects</span>
+                        <input class="form-control" type="text" value="@item.SideEffects" style="display:none" />
+
+                    </td>
+                    <td class="DQuan">
+                        <span>@item.Quantity</span>
+                        <input class="form-control" type="text" value="@item.Quantity" style="display:none" />
+                    </td>
+                    <td>
+                        <a class="Edit" href="javascript:;">Edit</a>
+                        <a class="Update" href="javascript:;" style="display:none">Update</a>
+                        <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-info" onclick="adddrug()">ADD</button>
+    </div>
+    <div id="Add_Drug" style="display:none">
+        <table class="table">
+            <tr>
+                <td align="center" width="200px">
+                    NAME:<br />
+                    <input class="form-control" type="text" id="txtName" />
+                </td>
+                <td align="center" width="200px">
+                    PRODUCED DATE:<br />
+                    <input class="form-control" type="date" id="txtMDate" />
+                </td>
+                <td align="center" width="150px">
+                    EXPIRY DATE:<br />
+                    <input class="form-control" type="date" id="txtEDate" />
+                </td>
+                <td align="center">
+                    USED FOR:<br />
+                    <input class="form-control" type="text" id="txtUse" />
+                </td>
+                <td align="center">
+                    SIDE EFFECTS:<br />
+                    <input class="form-control" type="text" id="txtSE" />
+                </td>
+                <td align="center">
+                    QUANTITY:<br />
+                    <input class="form-control" type="text" id="txtQuan" />
+                </td>
+                <td align="center">
+                    ADD:<br />
+                    <input class="form-control" type="button" id="btnAdd" value="Add" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+
+        function adddrug()
+        {
+            var x = document.getElementById("Add_Drug");
+            var btn = document.getElementById("btndiv");
+            if (x.style.display === "none")
+            {
+                x.style.display = "block";
+            } else
+            {
+                x.style.display = "none";
+            }
+        }
+
+        //Edit event handler.
+        $("body").on("click", "#tblDrugs .Edit", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    $(this).find("input").show();
+                    $(this).find("span").hide();
+                }
+            });
+            row.find(".Update").show();
+            row.find(".Cancel").show();
+            $(this).hide();
+        });
+
+        //Update event handler.
+        $("body").on("click", "#tblDrugs .Update", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    var span = $(this).find("span");
+                    var input = $(this).find("input");
+                    span.html(input.val());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Cancel").hide();
+            $(this).hide();
+
+            var dataValue = {
+                DrugId: row.find(".DId").find("span").html(),
+                DrugName: row.find(".DName").find("span").html(),
+                Man_Date: row.find(".DMDate").find("span").html(),
+                Exp_Date: row.find(".DEDate").find("span").html(),
+                UsedFor: row.find(".DUse").find("span").html(),
+                SideEffects: row.find(".DSide").find("span").html(),
+                Quantity: row.find(".DQuan").find("span").html()
+                };
+            $.ajax({
+                url: '@Url.Action("UpdateDrug","Admin")',
+                type: "POST",
+                data: dataValue,
+                dataType: 'json'
+            });
+        });
+
+        //Cancel event handler.
+        $("body").on("click", "#tblDrugs .Cancel", function () {
+            var row = $(this).closest("tr");
+            $("td", row).each(function () {
+                if ($(this).find("input").length > 0) {
+                    var span = $(this).find("span");
+                    var input = $(this).find("input");
+                    input.val(span.html());
+                    span.show();
+                    input.hide();
+                }
+            });
+            row.find(".Edit").show();
+            row.find(".Update").hide();
+            $(this).hide();
+        });
+
+        //Add to the table and database
+        $("body").on("click", "#btnAdd", function () {
+            var txtName = $("#txtName");
+            var txtMDate = $("#txtMDate");
+            var txtEDate = $("#txtEDate");
+            var txtUse = $("#txtUse");
+            var txtSE = $("#txtSE");
+            var txtQuan=$("#txtQuan")
+            var dataValue = {
+                DrugName: txtName.val(),
+                Man_Date: txtMDate.val(),
+                Exp_Date: txtEDate.val(),
+                UsedFor: txtUse.val(),
+                SideEffects: txtSE.val(),
+                Quantity: txtQuan.val()
+                };
+            $.ajax(
+            {
+                url: '@Url.Action("InsertDrug","Admin")',
+                type: "POST",
+                data: dataValue,
+                dataType: 'json',
+                success: function (r)
+                {
+                    window.location.href='@Url.Action("JS_Drugs", "Admin")';
+                }
+            });
+        });
+
+    </script>
+
+
+
+</div>

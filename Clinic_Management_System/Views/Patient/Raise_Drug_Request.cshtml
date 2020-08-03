@@ -1,0 +1,38 @@
+﻿@model Clinic_Management_System.Models.DrugViewModel
+@{
+    ViewBag.Title = "Raise_Drug_Request";
+}
+
+@{
+    Html.RenderPartial("Patient_Sidebar");
+}
+
+<h1 align="center" style="font-weight:bolder">Raise Drug Request</h1>
+<hr />
+
+<div class="main">
+    @using (Html.BeginForm("Raise_Drug_Request", "Patient", FormMethod.Post))
+    {
+
+        <div class="row">
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Select Drug</label>
+                    @Html.DropDownListFor(m => m.DrugId, Model.lstDrugs, "Select", new { @class = " roundedddlinput form-control" })
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Quantity</label>
+                    @Html.TextBoxFor(a => a.Quantity, new { placeholder = "Enter Quantity", @class = "roundedinput form-control", })
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <button type="submit" value="Update" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
+    }
+</div>

@@ -1,0 +1,127 @@
+﻿@model Clinic_Management_System.Models.MessageViewModel
+@{
+    ViewBag.Title = "View_Message";
+}
+
+@{
+    Html.RenderPartial("Doctor_Sidebar");
+}
+
+<h1 align="center" style=" font-weight:bolder">Messages</h1>
+<hr />
+<div class="main">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Reply</th>
+        </tr>
+
+        @if (Model.lstMessage.Count == 0)
+        {
+            <tr>
+                <td colspan="6" align="center">No Messages Found</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model.lstMessage)
+            {
+                if (item.isRead != true && item.From_Email!=item.Check_Email)
+                {
+                <tr  style="font-weight:bold">
+                    <td>@item.From_Email</td>
+                    <td>@item.To_Email</td>
+                    <td>@item.Subject</td>
+                    <td>@item.MessageDetail</td>
+                    <td>@item.Date</td>
+                    @if (item.From_Email != item.Check_Email)
+                    {
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_@item.MessageId">
+                            Reply
+                        </button>
+                    </td>
+                    }
+                </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@item.From_Email</td>
+                        <td>@item.To_Email</td>
+                        <td>@item.Subject</td>
+                        <td>@item.MessageDetail</td>
+                        <td>@item.Date</td>
+                        @if (item.From_Email != item.Check_Email)
+                        {
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_@item.MessageId">
+                                    Reply
+                                </button>
+                            </td>
+                        }
+                    </tr>
+                }
+
+                        <div class="modal fade" id="exampleModal_@item.MessageId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Reply Message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Message: <input type="text" id="txtMessage_@item.MessageId" class="form-control" />
+                                        Subject: <input type="text" id="txtSubject_@item.MessageId" class="form-control" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" id="btnSave_@item.MessageId" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                        <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+                        <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("#btnSave_@item.MessageId").click(function () {
+
+                                        var subject = $("#txtSubject_@item.MessageId").val();
+                                        var message = $("#txtMessage_@item.MessageId").val();
+
+                                        var dataValue = {
+                                            MessageId: @item.MessageId,
+                                            From_Email: '@item.To_Email',
+                                            To_Email: '@item.From_Email',
+                                            MessageDetail: message,
+                                            Subject: subject
+                                        };
+
+                                        $.ajax({
+                                            url: '@Url.Action("UpdateMessage", "Doctor")',
+                                            type: 'post',
+                                            data: dataValue,
+                                            dataType: 'json',
+                                            success: function (d) {
+                                                window.location.href='@Url.Action("View_Message", "Doctor")';
+                                            },
+                                        });
+                                    });
+                                });
+                        </script>
+                    @*</td>
+                </tr>*@
+            }
+        }
+    </table>
+</div>
+
+

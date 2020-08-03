@@ -1,0 +1,36 @@
+﻿@model Clinic_Management_System.Models.MessageViewModel
+@{
+    ViewBag.Title = "Send Message";
+}
+@{
+    Html.RenderPartial("Patient_Sidebar");
+}
+
+
+<h1 align="center" style="font-weight:bolder">Send Message</h1>
+<hr />
+@using (Html.BeginForm("Send_Message", "Patient", FormMethod.Post))
+{
+    <div class="row justify-content-center">
+        <label>To</label>
+    </div>
+    <div class="row justify-content-center">
+        @Html.DropDownListFor(a => a.To_Email, Model.lstDocId, "Select", new { @class = "form-control roundedddlinput", @id = "ddlDocs" })
+    </div>
+    <div class="row justify-content-center">
+        <label>Subject</label><br />
+    </div>
+    <div class="row justify-content-center">
+        @Html.TextAreaFor(a => a.Subject, new { @class = "roundedinput" })
+    </div>
+    <div class="row justify-content-center">
+        <label>Message</label>
+    </div>
+    <div class="row justify-content-center">
+        @Html.TextAreaFor(a => a.MessageDetail, new { @class = "roundedinput", @rows = 10 })
+    </div>
+    <div class="row justify-content-center">
+        <button type="submit" value="Update" class="btn btn-success">Send</button>
+    </div>
+
+}

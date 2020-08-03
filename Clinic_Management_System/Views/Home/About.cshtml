@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+@using (Clinic_Management_System.Models.KIITEntities db = new Clinic_Management_System.Models.KIITEntities())
+{
+    int memid = Convert.ToInt32(Session["Memberid"]);
+    int getdata = db.MemberLogins.Where(a => a.MemberId == memid).Select(a => a.RoleId).SingleOrDefault();
+    if(getdata==1)
+    {
+        Html.RenderPartial("Patient_Sidebar");
+    }
+    else if(getdata==2)
+    {
+        Html.RenderPartial("Doctor_Sidebar");
+    }
+    else if(getdata==3)
+    {
+        Html.RenderPartial("Supplier_Sidebar");
+    }
+    else if(getdata==4)
+    {
+        Html.RenderPartial("Admin_Sidebar");
+    }
+    else
+    {
+
+    }
+}
+<div class="main">
+    <h1 align="center" style=" font-weight:bolder">About</h1>
+    <hr />
+
+    <h2>This is the About page</h2>
+</div>

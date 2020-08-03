@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using (Clinic_Management_System.Models.KIITEntities db = new Clinic_Management_System.Models.KIITEntities())
+{
+    int memid = Convert.ToInt32(Session["Memberid"]);
+    int getdata = db.MemberLogins.Where(a => a.MemberId == memid).Select(a => a.RoleId).SingleOrDefault();
+    if (getdata == 1)
+    {
+        Html.RenderPartial("Patient_Sidebar");
+    }
+    else if (getdata == 2)
+    {
+        Html.RenderPartial("Doctor_Sidebar");
+    }
+    else if (getdata == 3)
+    {
+        Html.RenderPartial("Supplier_Sidebar");
+    }
+    else if (getdata == 4)
+    {
+        Html.RenderPartial("Admin_Sidebar");
+    }
+    else
+    {
+
+    }
+}
+
+<h1 align="center" style=" font-weight:bolder">Index</h1>
+<hr />
+<div class="main">
+    <div>
+        <h1>CLINIC AUTOMATION SYSTEM</h1>
+        <p class="lead">This is a project assigned to us by IBM.<br>Objective is to design a Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://www.ibm.com/services/careers" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <h2>Getting started</h2>
+            <h5>
+                This project is made using ASP.NET.
+            </h5>
+            <p><a class="btn btn-primary btn-lg" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>Things used in the project</h2>
+            <h5>Bootstrap</h5>
+            <h5>SQL</h5>
+            <h5>ASP.NET</h5>
+            <h5>JavaScript</h5>
+            <h5>AJAX</h5>
+            <p><a class="btn btn-primary btn-lg" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-3">
+            <h2>Things learnt in the Project</h2>
+            <h5>Use of Top-End Technologies</h5>
+            <h5>Real Time Webpages</h5>
+            <p><a class="btn btn-primary btn-lg" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>
+</div>

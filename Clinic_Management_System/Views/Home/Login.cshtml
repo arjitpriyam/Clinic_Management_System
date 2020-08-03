@@ -1,0 +1,39 @@
+﻿@model Clinic_Management_System.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h1 align="center" style=" font-weight:bolder">Login</h1>
+<hr />
+@using (@Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    <div class="row justify-content-center">
+        @Html.LabelFor(a => a.Username)
+    </div>
+    <div class="form-group row justify-content-center">
+        @Html.TextBoxFor(a => a.Username, new { placeholder = "Enter Username", @class = "roundedinput" })
+        @Html.ValidationMessageFor(a => a.Username, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="row justify-content-center">
+        @Html.LabelFor(a => a.PassWord)
+    </div>
+    <div class="form-group row justify-content-center">
+        @Html.TextBoxFor(a => a.PassWord, new { placeholder = "Enter Password", @class = "roundedinput",Type="password"  })
+        @Html.ValidationMessageFor(a => a.PassWord, "", new { @class = "text-danger"})
+    </div>
+    <div class="form-group row justify-content-center">
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </div>
+    <div>
+        @ViewBag.Message
+    </div>
+}
+
+
+
+
+
+

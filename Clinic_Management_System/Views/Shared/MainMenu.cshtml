@@ -1,0 +1,32 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <ul class="navbar navbar-nav ml-auto text-uppercase fixed-top">
+        <li class="nav-item">
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("About US", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="navbar navbar-nav ml-auto text-uppercase fixed-top">
+        <li class="nav-item active">
+            @Html.ActionLink("Register", "Register", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+
+        <li class="nav-item">
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("About US", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
+        </li>
+    </ul>
+}

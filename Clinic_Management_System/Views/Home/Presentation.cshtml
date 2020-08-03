@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Presentation";
+    Layout = "~/Views/Shared/PresentationView.cshtml";
+}
+
+    <style>
+        img {
+            width: 1920px;
+            height: 1080px;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 100%;
+            background-color: #008CBA;
+            overflow: hidden;
+            width: 0;
+            height: 100%;
+            transition: .5s ease;
+        }
+
+        .container:hover .overlay {
+            width: 50%;
+            left: 0;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+    </style>
+    <div class="container">
+        <img class="mySlides" src="Z://IBM/p1.jpg">
+        <img class="mySlides" src="Z://IBM/p2.jpg">
+        <img class="mySlides" src="Z://IBM/p3.jpg">
+        <img class="mySlides" src="Z://IBM/p4.jpg">
+        <img class="mySlides" src="Z://IBM/p5.jpg">
+        <div class="overlay">
+            <div class="text">Hello World</div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script type="text/javascript">
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > x.length) { slideIndex = 1 }
+            x[slideIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+

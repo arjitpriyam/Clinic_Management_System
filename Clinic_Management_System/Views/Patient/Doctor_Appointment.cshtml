@@ -1,0 +1,61 @@
+﻿@model Clinic_Management_System.Models.DoctorAppointmentViewModel
+
+@{
+    ViewBag.Title = "Doctor Appointment";
+}
+@{
+    Html.RenderPartial("Patient_Sidebar");
+}
+
+<h1 align="center" style="font-weight:bolder">Doctor Appointment</h1>
+<hr />
+@using (Html.BeginForm("Doctor_Appointment", "Patient", FormMethod.Post))
+{
+    <div class="main">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    @Html.TextBoxFor(a => a.PatientName, new { @class = "form-control roundedinput", @maxlength = "20" })
+                    @Html.ValidationMessageFor(a => a.PatientName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Subject</label>
+                    @Html.TextBoxFor(a => a.Subject, new { @class = "form-control roundedinput", @maxlength = "20" })
+                    @Html.ValidationMessageFor(a => a.Subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-12">
+                <div class="form-group">
+                    <label>Description</label>
+                    @Html.TextAreaFor(a => a.Description, new { @class = "roundedinput form-control" })
+                    @Html.ValidationMessageFor(a => a.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    @Html.TextBoxFor(a => a.AppointmentDate, new { @class = "form-control roundedinput", @maxlength = "20" })
+                </div>
+            </div>
+            <div class=" col-sm-6">
+                <div class="form-group">
+                    <label>Doctors</label>
+                    @Html.DropDownListFor(a => a.DoctorId, Model.lstDocs, "Select", new { @class = "form-control roundedddlinput", @id = "ddlDocs" })
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <button type="submit" value="Update" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+}
+

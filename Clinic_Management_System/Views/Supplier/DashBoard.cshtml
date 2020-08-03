@@ -1,0 +1,47 @@
+﻿@model Clinic_Management_System.Models.DashView
+<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "DashBoard";
+}
+
+@{
+    Html.RenderPartial("Supplier_Sidebar");
+}
+<h1 align="center" style=" font-weight:bolder">DashBoard</h1>
+<hr />
+<div class="main">
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th align="center">Total Orders</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.TotOrd</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-8" style="align-content:space-evenly">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Delivered=@Model.DelOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Dispatched=@Model.DisOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Requested=@Model.ReqOrd</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

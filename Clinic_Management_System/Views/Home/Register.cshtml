@@ -1,0 +1,46 @@
+﻿
+@model Clinic_Management_System.Models.MemberViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h1 align="center" style="font-weight:bolder">Register</h1>
+<hr />
+<div class="container">
+    @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+    {
+        <div class="row justify-content-center">
+            @Html.HiddenFor(a => a.MemberId)
+            <label>EMAIL</label>
+        </div>
+        <div class="form-group row justify-content-center">
+            @Html.TextBoxFor(a => a.EmailId, new { placeholder = "Enter Email", @class = "roundedinput", @maxlength = "20" })
+            @Html.ValidationMessageFor(a => a.EmailId, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="row justify-content-center">
+            <label>PASSWORD</label>
+        </div>
+        <div class="form-group row justify-content-center">
+            @Html.TextBoxFor(a => a.Password, new { placeholder = "Enter Password", @class = "roundedinput", @maxlength = "20" })
+            @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="row justify-content-center">
+            <label>ROLE</label>
+        </div>
+        <div class="form-group row justify-content-center">
+            @Html.DropDownListFor(a => a.RoleId, Model.lstRoles, "Select", new { @class = "roundedddlinput", @id = "ddlRoles" })
+            @Html.ValidationMessageFor(a => a.RoleId, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group row justify-content-center">
+            <input type="submit" value="SAVE" class="btn btn-success btn-outline-dark" id="btnsave">
+        </div>
+            <div class="text-success form-group">
+                @ViewBag.message
+            </div>
+
+            }
+        </div>

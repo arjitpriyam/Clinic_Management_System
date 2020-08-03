@@ -1,0 +1,92 @@
+﻿@model Clinic_Management_System.Models.DashView
+<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "DashBoard";
+}
+@{
+    Html.RenderPartial("Admin_Sidebar");
+}
+
+<h1 align="center" style=" font-weight:bolder">DashBoard</h1>
+<hr />
+
+<div class="main">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th align="center">Total Doctors</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.Docs</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th align="center">Total Patients</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.Patn</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Total Orders=@Model.TotOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Delivered=@Model.DelOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Dispatched=@Model.DisOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Requested=@Model.ReqOrd</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding-top:100px">
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <th align="center">Total Suppliers</th>
+                    </tr>
+                    <tr>
+                        <td>@Model.Sups</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="rcorners2">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Total Orders=@Model.TotOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Assigned=@Model.AssOrd</td>
+                    </tr>
+                    <tr>
+                        <td>Not Assigned=@Model.NAssOrd</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProjectModelStoreContainer" CdmEntityContainer="KIITEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="ProjectModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doctors">
+      <EntityTypeMapping TypeName="ProjectModel.Doctor">
+        <MappingFragment StoreEntitySet="Doctor">
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="TotalExperience" ColumnName="TotalExperience" />
+          <ScalarProperty Name="SpecializedId" ColumnName="SpecializedId" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoctorAppointments">
+      <EntityTypeMapping TypeName="ProjectModel.DoctorAppointment">
+        <MappingFragment StoreEntitySet="DoctorAppointment">
+          <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentStatus" ColumnName="AppointmentStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drugs">
+      <EntityTypeMapping TypeName="ProjectModel.Drug">
+        <MappingFragment StoreEntitySet="Drug">
+          <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+          <ScalarProperty Name="DrugName" ColumnName="DrugName" />
+          <ScalarProperty Name="ManufactureDate" ColumnName="ManufactureDate" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="UsedFor" ColumnName="UsedFor" />
+          <ScalarProperty Name="SideEffects" ColumnName="SideEffects" />
+          <ScalarProperty Name="TotalQuantityAvailable" ColumnName="TotalQuantityAvailable" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DrugDeliveries">
+      <EntityTypeMapping TypeName="ProjectModel.DrugDelivery">
+        <MappingFragment StoreEntitySet="DrugDelivery">
+          <ScalarProperty Name="DeliveryId" ColumnName="DeliveryId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inboxes">
+      <EntityTypeMapping TypeName="ProjectModel.Inbox">
+        <MappingFragment StoreEntitySet="Inbox">
+          <ScalarProperty Name="ReplyId" ColumnName="ReplyId" />
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="FromEmailId" ColumnName="FromEmailId" />
+          <ScalarProperty Name="ToEmailId" ColumnName="ToEmailId" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="MessageDetail" ColumnName="MessageDetail" />
+          <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberLogins">
+      <EntityTypeMapping TypeName="ProjectModel.MemberLogin">
+        <MappingFragment StoreEntitySet="MemberLogin">
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="ProjectModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PatientOrderDetails">
+      <EntityTypeMapping TypeName="ProjectModel.PatientOrderDetail">
+        <MappingFragment StoreEntitySet="PatientOrderDetails">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="DrugId" ColumnName="DrugId" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderedDate" ColumnName="OrderedDate" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleDetails">
+      <EntityTypeMapping TypeName="ProjectModel.RoleDetail">
+        <MappingFragment StoreEntitySet="RoleDetails">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecializedDatas">
+      <EntityTypeMapping TypeName="ProjectModel.SpecializedData">
+        <MappingFragment StoreEntitySet="SpecializedData">
+          <ScalarProperty Name="SpecializedId" ColumnName="SpecializedId" />
+          <ScalarProperty Name="SpecializedName" ColumnName="SpecializedName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="ProjectModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InsertMember" FunctionName="ProjectModel.Store.InsertMember" />
+    <FunctionImportMapping FunctionImportName="InsertPatient" FunctionName="ProjectModel.Store.InsertPatient" />
+    <FunctionImportMapping FunctionImportName="UpdatePatient" FunctionName="ProjectModel.Store.UpdatePatient" />
+    <FunctionImportMapping FunctionImportName="UpdatePassword" FunctionName="ProjectModel.Store.UpdatePassword" />
+    <FunctionImportMapping FunctionImportName="InsertAppointment" FunctionName="ProjectModel.Store.InsertAppointment" />
+    <FunctionImportMapping FunctionImportName="InsertMessage" FunctionName="ProjectModel.Store.InsertMessage" />
+    <FunctionImportMapping FunctionImportName="InsertDoctor" FunctionName="ProjectModel.Store.InsertDoctor" />
+    <FunctionImportMapping FunctionImportName="UpdateDoctor" FunctionName="ProjectModel.Store.UpdateDoctor" />
+    <FunctionImportMapping FunctionImportName="InsertSupplier" FunctionName="ProjectModel.Store.InsertSupplier" />
+    <FunctionImportMapping FunctionImportName="UpdateSupplier" FunctionName="ProjectModel.Store.UpdateSupplier" />
+    <FunctionImportMapping FunctionImportName="OrderDrug" FunctionName="ProjectModel.Store.OrderDrug" />
+    <FunctionImportMapping FunctionImportName="UpdateOrderStatus" FunctionName="ProjectModel.Store.UpdateOrderStatus" />
+    <FunctionImportMapping FunctionImportName="InsertDrug" FunctionName="ProjectModel.Store.InsertDrug" />
+    <FunctionImportMapping FunctionImportName="RemoveDrug" FunctionName="ProjectModel.Store.RemoveDrug" />
+    <FunctionImportMapping FunctionImportName="UpdateDrug" FunctionName="ProjectModel.Store.UpdateDrug" />
+    <FunctionImportMapping FunctionImportName="InsertDelivery" FunctionName="ProjectModel.Store.InsertDelivery" />
+    <FunctionImportMapping FunctionImportName="InsertReplyMessage" FunctionName="ProjectModel.Store.InsertReplyMessage" />
+    <FunctionImportMapping FunctionImportName="UpdateAppStatus" FunctionName="ProjectModel.Store.UpdateAppStatus" />
+    <FunctionImportMapping FunctionImportName="UpdateDeliveryDate" FunctionName="ProjectModel.Store.UpdateDeliveryDate" />
+    <FunctionImportMapping FunctionImportName="InsertAdmin" FunctionName="ProjectModel.Store.InsertAdmin" />
+    <FunctionImportMapping FunctionImportName="UpdateAdmin" FunctionName="ProjectModel.Store.UpdateAdmin" />
+    <FunctionImportMapping FunctionImportName="UpdateMessageStatus" FunctionName="ProjectModel.Store.UpdateMessageStatus" />
+    <FunctionImportMapping FunctionImportName="UpdateDQuan" FunctionName="ProjectModel.Store.UpdateDQuan" />
+  </EntityContainerMapping>
+</Mapping>

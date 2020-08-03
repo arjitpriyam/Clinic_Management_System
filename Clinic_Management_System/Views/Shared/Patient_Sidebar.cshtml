@@ -1,0 +1,36 @@
+﻿<link href="@Url.Content("~/Content/Sidebar.css")"
+      rel="stylesheet" type="text/css" />
+
+
+@if (Request.IsAuthenticated)
+{
+    using (Clinic_Management_System.Models.KIITEntities db = new Clinic_Management_System.Models.KIITEntities())
+    {
+        int memid = Convert.ToInt32(Session["Memberid"]);
+        var data = db.Patients.SingleOrDefault(a => a.MemberId == memid);
+        if (data == null)
+        {
+            <div class="sidenav">
+                <a href="@Url.Action("DashBoard", "Patient")">Dashboard</a>
+                <a href="@Url.Action("EditProfile", "Patient")">Edit Profile</a>
+            </div>
+        }
+        else
+        {
+            <div class="sidenav">
+                <a href="@Url.Action("DashBoard", "Patient")">Dashboard</a>
+                <a href="@Url.Action("EditProfile", "Patient")">Edit Profile</a>
+                <a href="@Url.Action("Change_Password", "Patient")">Change Password</a>
+                <a href="@Url.Action("Doctor_Appointment", "Patient")">Doctor Appointment</a>
+                <a href="@Url.Action("View_App_Details", "Patient")">View Appointment Details</a>
+                <a href="@Url.Action("Send_Message", "Patient")">Send Message to doctor</a>
+                <a href="@Url.Action("View_Messages", "Patient")">View Messages</a>
+                <a href="@Url.Action("Raise_Drug_Request", "Patient")">Raise Drug Order</a>
+                <a href="@Url.Action("View_Order_Details", "Patient")">View Order Details</a>
+            </div>
+
+        }
+    }
+}
+
+
